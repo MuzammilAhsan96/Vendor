@@ -2,9 +2,11 @@ package com.application.vendor.ui.auth
 
 import android.Manifest
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -13,6 +15,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import com.application.vendor.R
+import com.application.vendor.base.App
 import com.application.vendor.base.BaseActivity
 import com.application.vendor.model.Media
 import com.application.vendor.utils.AppConstant
@@ -30,7 +33,9 @@ import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_add.btnLogin
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_login.*
-import java.io.File
+import android.provider.MediaStore.Images
+import java.io.ByteArrayOutputStream
+
 
 class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
     val bottomSheetFragment = BottomSheetFragment(this@AddActivity)
@@ -52,6 +57,11 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
         }
         setListener()
         setObservables()
+        deleteImage()
+    }
+    private fun deleteImage()
+    {
+
     }
 
     private fun setListener() {
@@ -69,7 +79,7 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
 
     private fun setObservables() {
 
-        viewModel.imageUploadResponse.observe(this) { data ->
+        viewModel.imageUploadSuccess.observe(this) { data ->
             AppUtil.showToast(data?.message)
             hideProgressBar()
             PreferenceKeeper.getInstance().isLogin = true
@@ -130,6 +140,28 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
             ).check()
 
     }
+    //get file path from storage
+    fun getPath(uri: Uri): String? {
+        val projection = arrayOf(MediaStore.Video.Media.DATA)
+        val cursor: Cursor? =
+            App.INSTANCE.getContentResolver().query(uri, projection, null, null, null)
+        return if (cursor != null) {
+            // HERE YOU WILL GET A NULL POINTER IF CURSOR IS NULL
+            // THIS CAN BE, IF YOU USED OI FILE MANAGER FOR PICKING THE MEDIA
+            val column_index = cursor.getColumnIndexOrThrow(MediaStore.Video.Media.DATA)
+            cursor.moveToFirst()
+            val filePath = cursor.getString(column_index)
+            cursor.close()
+            filePath
+        } else null
+    }
+
+    fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+        val bytes = ByteArrayOutputStream()
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
+        val path = Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null)
+        return Uri.parse(path)
+    }
 
     private fun pickImageFromGallery() {
         //Intent to pick image
@@ -168,16 +200,20 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
     //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
+        var tempUri:Uri?=null
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
             if (count == 3) {
                 root1.visibility = View.VISIBLE
                 ivPhoto1.setImageURI(data?.data)
+                tempUri=data?.data
             } else if (count == 2) {
                 root2.visibility = View.VISIBLE
                 ivPhoto2.setImageURI(data?.data)
+                tempUri=data?.data
             } else if (count == 1) {
                 root3.visibility = View.VISIBLE
                 ivPhoto3.setImageURI(data?.data)
+                tempUri=data?.data
             } else {
                 AppUtil.showToast("Maximum 3 Images can be captured!")
             }
@@ -186,22 +222,24 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
             if (count == 3) {
                 root1.visibility = View.VISIBLE
                 ivPhoto1.setImageBitmap(data.extras?.get("data") as Bitmap)
+                tempUri = getImageUri(applicationContext, data.extras?.get("data") as Bitmap)
             } else if (count == 2) {
                 root2.visibility = View.VISIBLE
                 ivPhoto2.setImageBitmap(data.extras?.get("data") as Bitmap)
+                tempUri = getImageUri(applicationContext, data.extras?.get("data") as Bitmap)
             } else if (count == 1) {
                 root3.visibility = View.VISIBLE
                 ivPhoto3.setImageBitmap(data.extras?.get("data") as Bitmap)
+                tempUri = getImageUri(applicationContext, data.extras?.get("data") as Bitmap)
             } else {
                 AppUtil.showToast("Maximum 3 Images can be captured!")
             }
-
         }
         val media = Media()
-        media.image = data?.data?.path.toString()
-        println("path for image"+media.image)
+        media.image = tempUri?.let { getPath(it) }
         selectedMediaFiles?.add(media)
         count--
+
     }
 
     override fun onclick(v: Int) {
@@ -212,10 +250,6 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
         }
         bottomSheetFragment.dismiss()
     }
-//    fun onStoragePickUp(data: MutableList<Media>?)
-//    {
-//
-//    }
 
 }
 

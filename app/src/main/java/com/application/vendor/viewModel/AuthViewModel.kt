@@ -34,7 +34,7 @@ class AuthViewModel : ViewModel(), APICallHandler<Any> {
     var myProfileSuccess =
         MutableLiveData<MyProfileResponse>()
 
-    var imageUploadResponse =
+    var imageUploadSuccess =
         MutableLiveData<ImageResponse>()
 
 
@@ -64,6 +64,10 @@ class AuthViewModel : ViewModel(), APICallHandler<Any> {
             APIType.FOOD_LIST -> {
                 val userFoodResponse = response as FoodResponse
                 foodListSuccess.setValue(userFoodResponse)
+            }
+            APIType.ADD_PHOTO->{
+                val imageResponse = response as ImageResponse
+                imageUploadSuccess.setValue(imageResponse)
             }
 
             else -> {
