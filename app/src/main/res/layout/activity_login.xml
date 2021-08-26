@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:background="@drawable/ic_splash"
+    android:scrollbars="none">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/_60sdp"
+            android:layout_marginLeft="@dimen/_70sdp"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:src="@drawable/ic_cafe_1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:layout_marginLeft="@dimen/_25sdp"
+            android:layout_marginRight="@dimen/_25sdp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:src="@drawable/ic_email" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="Email"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/_13sdp" />
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:id="@+id/etEmail"
+                android:inputType="textEmailAddress"
+                android:hint="Enter Email"
+                android:textSize="@dimen/_11sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:paddingTop="@dimen/_5sdp"
+                android:paddingBottom="@dimen/_5sdp"
+                android:paddingLeft="@dimen/_15sdp"
+                android:background="@drawable/bg_rect_round_corner_15dp"
+                />
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/_20sdp">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="@dimen/_16sdp"
+                    android:layout_height="@dimen/_16sdp"
+                    android:src="@drawable/ic_password" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/_13sdp"
+                    android:textColor="@color/color_black"
+                    android:layout_marginLeft="@dimen/_5sdp"
+                    android:text="Password"
+                    />
+            </LinearLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                >
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:id="@+id/etPassword"
+                    android:background="@drawable/bg_rect_round_corner_15dp"
+                    android:hint="Enter Password"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:textSize="@dimen/_11sdp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/ivPasswordHide"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:padding="@dimen/_6sdp"
+                    android:src="@drawable/ic_password_hide"
+                    android:tint="@color/color_black" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forgot Password?"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/color_black"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:layout_gravity="end"/>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginTop="@dimen/_45sdp"
+                android:id="@+id/btnLogin"
+                android:background="@drawable/bg_rect_round_corner_15dp"
+                android:backgroundTint="@color/color_black"
+                android:textColor="@color/color_white"
+                android:text="Login"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

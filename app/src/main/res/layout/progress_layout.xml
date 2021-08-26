@@ -1,0 +1,16 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/_65sdp"
+    android:layout_height="@dimen/_65sdp"
+    android:layout_gravity="center_vertical|center_horizontal"
+    android:background="#00FFFFFF">
+
+    <ProgressBar
+        android:layout_width="@dimen/_65sdp"
+        android:layout_height="@dimen/_65sdp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:alpha=".9"
+        android:indeterminateDrawable="@drawable/progress_icon" />
+
+</RelativeLayout>

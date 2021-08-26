@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/ic_splash"
+    tools:context=".ui.auth.AddActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/backbtn"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:src="@drawable/ic_back"
+                    android:tint="@color/color_black" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/an_demi_bold"
+                    android:gravity="center"
+                    android:text="Add Food Item"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/_15sdp"
+
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_30sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/ic_food_item" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="Item Name"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etItemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_rect_round_corner_15dp"
+                    android:hint="Enter Item Name"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:textSize="@dimen/_11sdp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/ic_food_price" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="Price"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_rect_round_corner_15dp"
+                    android:hint="Enter Price"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:textSize="@dimen/_11sdp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/ic_food_aq" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="Availabale Quantity"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/etQuantity"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_rect_round_corner_15dp"
+                    android:hint="Enter Available Quantity"
+                    android:inputType="textEmailAddress"
+                    android:paddingLeft="@dimen/_15sdp"
+                    android:paddingTop="@dimen/_5sdp"
+                    android:paddingBottom="@dimen/_5sdp"
+                    android:textSize="@dimen/_11sdp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:orientation="horizontal">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:layout_width="@dimen/_16sdp"
+                        android:layout_height="@dimen/_16sdp"
+                        android:src="@drawable/ic_food_aq" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:text="Add Food Image"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/_13sdp" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_9sdp">
+
+                    <LinearLayout
+                        android:id="@+id/ivAddImage"
+                        android:layout_width="@dimen/_65sdp"
+                        android:layout_height="@dimen/_65sdp"
+                        android:layout_gravity="start"
+                        android:background="@drawable/bg_rect_round_corner_20dp"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="@dimen/_34sdp"
+                            android:layout_height="@dimen/_34sdp"
+                            android:gravity="center"
+                            android:src="@drawable/ic_food_image"
+                            android:tint="@color/color_E1D0CB" />
+
+                    </LinearLayout>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_65sdp"
+                        android:visibility="invisible"
+                        android:id="@+id/root1"
+                        android:layout_height="@dimen/_65sdp"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_3sdp">
+
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_808080">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivPhoto1"
+                                android:layout_width="@dimen/_65sdp"
+                                android:layout_height="@dimen/_65sdp"
+                                android:scaleType="centerCrop" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivDelete1"
+                                android:layout_width="@dimen/_24sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginEnd="@dimen/_2sdp"
+                                android:foreground="?actionBarItemBackground"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_delete"
+                                android:tint="@color/color_black" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_65sdp"
+                        android:id="@+id/root2"
+                        android:layout_height="@dimen/_65sdp"
+                        android:visibility="invisible"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_3sdp">
+
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_808080">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivPhoto2"
+                                android:layout_width="@dimen/_65sdp"
+                                android:layout_height="@dimen/_65sdp"
+                                android:scaleType="centerCrop" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivDelete2"
+                                android:layout_width="@dimen/_24sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginEnd="@dimen/_2sdp"
+                                android:foreground="?actionBarItemBackground"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_delete"
+                                android:tint="@color/color_black" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_65sdp"
+                        android:layout_height="@dimen/_65sdp"
+                        android:id="@+id/root3"
+                        android:layout_marginLeft="@dimen/_2sdp"
+                        android:visibility="invisible"
+                        android:layout_marginRight="@dimen/_2sdp"
+                        app:cardCornerRadius="@dimen/_3sdp">
+
+                        <RelativeLayout
+
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:visibility="visible"
+                            android:background="@color/color_808080">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivPhoto3"
+                                android:layout_width="@dimen/_65sdp"
+                                android:layout_height="@dimen/_65sdp"
+                                android:scaleType="centerCrop" />
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:id="@+id/ivDelete3"
+                                android:layout_width="@dimen/_24sdp"
+                                android:layout_height="@dimen/_24sdp"
+                                android:layout_alignParentRight="true"
+                                android:layout_marginTop="@dimen/_2sdp"
+                                android:layout_marginEnd="@dimen/_2sdp"
+                                android:foreground="?actionBarItemBackground"
+                                android:padding="@dimen/_4sdp"
+                                android:src="@drawable/ic_delete"
+                                android:tint="@color/color_black" />
+
+                        </RelativeLayout>
+                    </androidx.cardview.widget.CardView>
+
+
+                    </LinearLayout>
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btnLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_marginLeft="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_45sdp"
+                    android:layout_marginRight="@dimen/_20sdp"
+                    android:background="@drawable/bg_rect_round_corner_15dp"
+                    android:backgroundTint="@color/color_black"
+                    android:fontFamily="@font/an_demi_bold"
+                    android:text="Add Food"
+                    android:textAllCaps="false"
+                    android:textColor="@color/color_white" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

@@ -1,0 +1,178 @@
+import java.util.regex.Matcher
+import java.util.regex.Pattern
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 26
+        targetSdkVersion 30
+        multiDexEnabled true
+    }
+
+    flavorDimensions "Vendor"
+    def appName = 'Vendor'
+
+    signingConfigs {
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //debuggable true
+
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    def name = appName + "_" + getCurrentFlavor() + "_" + variant.mergedFlavor.versionName + "_" +
+                            variant.mergedFlavor.versionCode + "_" +
+                            getDate() + ".apk";
+                    output.outputFileName = name
+                }
+            }
+        }
+        debug {
+            debuggable true
+        }
+    }
+
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+    }
+
+
+    productFlavors {
+
+        devUser {
+            buildConfigField "String", "FILE_PROVIDER", '"com.application.vendor.provider"'
+            applicationId 'com.application.Vendor'
+            buildConfigField "String", "BASE_URL", '"https://devhrmapi.mobcoder.com/hrm/api/"'
+            manifestPlaceholders = [
+                    appName: "Vendor",
+                    appIcon: '@mipmap/ic_launcher_cafe'
+            ]
+            versionCode 1
+            versionName '1.0'
+            buildConfigField "int", "APP_STORE", '2'
+            buildConfigField "String", "BASE_AUTH", '"Basic aHJtX2FkbWluOmFkbWluQGhybQ=="'
+        }
+
+
+        stagUser {
+            buildConfigField "String", "FILE_PROVIDER", '"com.application.vendor.provider"'
+            applicationId 'com.application.Vendor'
+            buildConfigField "String", "BASE_URL", '"https://devhrmapi.mobcoder.com/hrm/api/"'
+            manifestPlaceholders = [
+                    appName: "Vendor",
+                    appIcon: '@mipmap/ic_launcher_cafe'
+            ]
+            versionCode 1
+            versionName '1.0'
+            buildConfigField "int", "APP_STORE", '2'
+            buildConfigField "String", "BASE_AUTH", '"Basic aHJtX2FkbWluOmFkbWluQGhybQ=="'
+        }
+    }
+
+
+    lintOptions {
+        abortOnError false
+        disable 'MissingTranslation'
+    }
+
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    // for kotlin
+    //noinspection GradleDependency
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.30-RC"
+    //extension of findviewbyid
+    implementation 'androidx.core:core-ktx:1.5.0'
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"//for viewmodel
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"// to observe live data
+    implementation 'com.google.android.play:core-ktx:1.8.1'
+
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.3.1'
+    implementation "androidx.activity:activity-ktx:1.2.3"
+    implementation "androidx.fragment:fragment-ktx:1.3.5"
+
+    implementation 'androidx.appcompat:appcompat:1.3.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation "com.google.android.material:material:1.4.0-rc01"
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.cardview:cardview:1.0.0'
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-gson:2.9.0"
+    implementation "com.squareup.okhttp3:logging-interceptor:4.4.0"
+    implementation "com.squareup.okhttp3:okhttp:4.8.0"
+
+    // ViewModel and LiveData
+    implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:4.11.0"
+    annotationProcessor "com.github.bumptech.glide:compiler:4.11.0"
+
+    // All dimens
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+
+    // run time permission
+    implementation 'com.karumi:dexter:6.2.2'
+
+    //Circular image
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //Rounded image
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+}
+
+
+def getCurrentFlavor() {
+    Gradle gradle = getGradle()
+    String tskReqStr = gradle.getStartParameter().getTaskRequests().toString()
+    Pattern pattern;
+    pattern = Pattern.compile("assemble(\\w+)(Release|Debug)")
+    Matcher matcher = pattern.matcher(tskReqStr)
+    if (matcher.find())
+        return matcher.group(1).toLowerCase()
+    else {
+        println "NO MATCH FOUND"
+        return "";
+    }
+}
+
+static def getDate() {
+    def date = new Date()
+    def formattedDate = date.format('yyyy-MM-dd')
+    return formattedDate
+}
