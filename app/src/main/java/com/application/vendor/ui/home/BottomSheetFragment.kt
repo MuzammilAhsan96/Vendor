@@ -1,26 +1,16 @@
-package com.application.vendor.ui.auth
+package com.application.vendor.ui.home
 
 
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.application.vendor.R
-import com.application.vendor.utils.AppConstant
-import com.application.vendor.utils.AppConstant.REQUEST_CODE
-import com.application.vendor.utils.AppUtil
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import kotlinx.android.synthetic.main.activity_add.*
 import kotlinx.android.synthetic.main.activity_bottom.*
 
 
-class BottomSheetFragment(var callback:cameraGallery) : BottomSheetDialogFragment() {
+class BottomSheetFragment(var callback: cameraGallery) : BottomSheetDialogFragment() {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

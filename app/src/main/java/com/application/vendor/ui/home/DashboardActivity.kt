@@ -1,9 +1,7 @@
-package com.application.vendor.ui.auth
+package com.application.vendor.ui.home
 
 import android.app.Activity
-import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
@@ -13,13 +11,12 @@ import com.application.vendor.R
 import com.application.vendor.base.BaseActivity
 import com.application.vendor.callback.RootCallback
 import com.application.vendor.model.food.Food
-import com.application.vendor.ui.splash.SplashActivity
+import com.application.vendor.ui.auth.LoginActivity
 import com.application.vendor.utils.AppConstant
 import com.application.vendor.utils.AppUtil
 import com.application.vendor.utils.PreferenceKeeper
 import com.application.vendor.viewModel.AuthViewModel
 import kotlinx.android.synthetic.main.activity_dashboard.*
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
 class DashboardActivity : BaseActivity(), RootCallback<Any>, SwipeRefreshLayout.OnRefreshListener {

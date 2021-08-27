@@ -39,10 +39,10 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="allowBackup,supportsRtl,label">
         <activity
-            android:name=".ui.auth.AddActivity"
+            android:name=".ui.home.AddActivity"
             android:exported="true" />
         <activity
-            android:name=".ui.auth.DashboardActivity"
+            android:name=".ui.home.DashboardActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

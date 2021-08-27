@@ -1,4 +1,4 @@
-package com.application.vendor.ui.auth
+package com.application.vendor.ui.home
 
 import android.Manifest
 import android.app.AlertDialog

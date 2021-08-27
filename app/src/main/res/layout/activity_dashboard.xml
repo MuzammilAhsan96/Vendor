@@ -6,7 +6,7 @@
     android:id="@+id/drawer"
     android:layout_height="match_parent"
     android:background="@drawable/ic_splash"
-    tools:context=".ui.auth.DashboardActivity">
+    tools:context=".ui.home.DashboardActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

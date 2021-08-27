@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/ic_splash"
-    tools:context=".ui.auth.AddActivity">
+    tools:context=".ui.home.AddActivity">
 
     <ScrollView
         android:layout_width="match_parent"

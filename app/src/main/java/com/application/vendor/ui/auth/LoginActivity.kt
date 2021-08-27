@@ -1,12 +1,12 @@
 package com.application.vendor.ui.auth
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
 import android.util.Patterns
 import androidx.activity.viewModels
 import com.application.vendor.R
 import com.application.vendor.base.BaseActivity
+import com.application.vendor.ui.home.DashboardActivity
 import com.application.vendor.utils.AppUtil
 import com.application.vendor.utils.PreferenceKeeper
 import com.application.vendor.viewModel.AuthViewModel
