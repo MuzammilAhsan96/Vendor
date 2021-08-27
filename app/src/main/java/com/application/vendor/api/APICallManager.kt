@@ -87,7 +87,7 @@ class APICallManager<T>(
     }
 
 
-    fun getAllFoodAPI(vendorId : String?) {
+    fun getAllFoodAPI(vendorId: String?) {
         APIClient.getClient().getAllFoodAPI(vendorId)
             .enqueue(this@APICallManager as Callback<BaseResponse<FoodResponse?>>)
     }

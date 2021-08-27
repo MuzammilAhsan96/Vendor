@@ -59,8 +59,29 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
         setObservables()
         deleteImage()
     }
-    private fun deleteImage()
-    {
+
+    private fun deleteImage() {
+        ivDelete1.setOnClickListener {
+            ivPhoto1.setImageURI(null)
+            root1.visibility = View.GONE
+            (selectedMediaFiles?.size)?.minus(1)?.let { it1 -> selectedMediaFiles?.removeAt(it1) }
+            println(selectedMediaFiles?.size)
+            count++
+        }
+        ivDelete2.setOnClickListener {
+            ivPhoto2.setImageURI(null);
+            root2.visibility = View.GONE
+            (selectedMediaFiles?.size)?.minus(1)?.let { it1 -> selectedMediaFiles?.removeAt(it1) }
+            count++
+            println(selectedMediaFiles?.size)
+        }
+        ivDelete3.setOnClickListener {
+            ivPhoto3.setImageURI(null);
+            root3.visibility = View.GONE
+            (selectedMediaFiles?.size)?.minus(1)?.let { it1 -> selectedMediaFiles?.removeAt(it1) }
+            count++
+            println(selectedMediaFiles?.size)
+        }
 
     }
 
@@ -140,6 +161,7 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
             ).check()
 
     }
+
     //get file path from storage
     fun getPath(uri: Uri): String? {
         val projection = arrayOf(MediaStore.Video.Media.DATA)
@@ -200,42 +222,32 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
     //handle result of picked image
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        var tempUri:Uri?=null
+        var tempUri: Uri? = null
+        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE && data != null)
+        {
+            tempUri = getImageUri(applicationContext, data.extras?.get("data") as Bitmap)
+        }
         if (resultCode == RESULT_OK && requestCode == IMAGE_PICK_CODE) {
-            if (count == 3) {
-                root1.visibility = View.VISIBLE
-                ivPhoto1.setImageURI(data?.data)
-                tempUri=data?.data
-            } else if (count == 2) {
-                root2.visibility = View.VISIBLE
-                ivPhoto2.setImageURI(data?.data)
-                tempUri=data?.data
-            } else if (count == 1) {
-                root3.visibility = View.VISIBLE
-                ivPhoto3.setImageURI(data?.data)
-                tempUri=data?.data
-            } else {
-                AppUtil.showToast("Maximum 3 Images can be captured!")
-            }
+            tempUri = data?.data
         }
-        if (resultCode == RESULT_OK && requestCode == REQUEST_CODE && data != null) {
-            if (count == 3) {
-                root1.visibility = View.VISIBLE
-                ivPhoto1.setImageBitmap(data.extras?.get("data") as Bitmap)
-                tempUri = getImageUri(applicationContext, data.extras?.get("data") as Bitmap)
-            } else if (count == 2) {
-                root2.visibility = View.VISIBLE
-                ivPhoto2.setImageBitmap(data.extras?.get("data") as Bitmap)
-                tempUri = getImageUri(applicationContext, data.extras?.get("data") as Bitmap)
-            } else if (count == 1) {
-                root3.visibility = View.VISIBLE
-                ivPhoto3.setImageBitmap(data.extras?.get("data") as Bitmap)
-                tempUri = getImageUri(applicationContext, data.extras?.get("data") as Bitmap)
-            } else {
-                AppUtil.showToast("Maximum 3 Images can be captured!")
-            }
+        if (count == 3) {
+            root1.visibility = View.VISIBLE
+            ivPhoto1.setImageURI(tempUri)
+        } else if (count == 2) {
+            root2.visibility = View.VISIBLE
+            ivPhoto2.setImageURI(tempUri)
+        } else if (count == 1) {
+            root3.visibility = View.VISIBLE
+            ivPhoto3.setImageURI(tempUri)
+        } else {
+            AppUtil.showToast("Maximum 3 Images can be captured!")
         }
+
         val media = Media()
+        if (tempUri != null) {
+            println("path = "+tempUri.path)
+        }
+        println("path2 = "+tempUri?.let { getPath(it) })
         media.image = tempUri?.let { getPath(it) }
         selectedMediaFiles?.add(media)
         count--

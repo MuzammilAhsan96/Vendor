@@ -8,6 +8,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.core.view.GravityCompat
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.application.vendor.R
 import com.application.vendor.base.BaseActivity
 import com.application.vendor.callback.RootCallback
@@ -21,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.nav_header_main.*
 
-class DashboardActivity : BaseActivity(), RootCallback<Any> {
+class DashboardActivity : BaseActivity(), RootCallback<Any>, SwipeRefreshLayout.OnRefreshListener {
 
     private var foodAdapter: DashboardAdapter? = null
 
@@ -51,6 +52,7 @@ class DashboardActivity : BaseActivity(), RootCallback<Any> {
             launchActivity(AddActivity::class.java)
         }
     }
+
     private fun setListener() {
         ivMenuK.setOnClickListener {
             drawer.openDrawer(GravityCompat.START)
@@ -73,12 +75,26 @@ class DashboardActivity : BaseActivity(), RootCallback<Any> {
 
     }
 
+    override fun onRefresh() {
+        if (AppUtil.isConnection()) {
+            viewModel.getMyProfile()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if (AppUtil.isConnection()) {
+            viewModel.getMyProfile()
+        }
+    }
+
 
     private fun setNav() {
         val drawerToggle = ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close)
         drawer.addDrawerListener(drawerToggle)
         drawerToggle.syncState()
     }
+
     override fun onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START)
@@ -103,7 +119,6 @@ class DashboardActivity : BaseActivity(), RootCallback<Any> {
             tvMenuName?.text =
                 AppUtil.getFullName(data.profileData?.firstName, data.profileData?.lastName)
             tvMenuEmail?.text = data.profileData?.email
-            val c = data.profileData?.couponWalletBalance
             val w = data.profileData?.walletBalance
             tvMenuWallet?.text = w?.let { AppUtil.getRupee(w) }
             tvMenuPhone?.text = data.profileData?.phone

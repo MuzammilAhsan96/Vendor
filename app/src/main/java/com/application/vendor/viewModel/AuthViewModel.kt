@@ -46,11 +46,10 @@ class AuthViewModel : ViewModel(), APICallHandler<Any> {
         apiCallManager.loginAPI(email, password)
     }
 
-    fun getFoodList(vendorId : String?) {
+    fun getFoodList(vendorId: String?) {
         val apiCallManager = APICallManager(APIType.FOOD_LIST, this)
         apiCallManager.getAllFoodAPI(vendorId)
     }
-
 
 
     override fun onSuccess(apiType: APIType, response: Any?) {
@@ -65,9 +64,13 @@ class AuthViewModel : ViewModel(), APICallHandler<Any> {
                 val userFoodResponse = response as FoodResponse
                 foodListSuccess.setValue(userFoodResponse)
             }
-            APIType.ADD_PHOTO->{
+            APIType.ADD_PHOTO -> {
                 val imageResponse = response as ImageResponse
                 imageUploadSuccess.setValue(imageResponse)
+            }
+            APIType.USER_PROFILE -> {
+                val myProfileResponse = response as MyProfileResponse
+                myProfileSuccess.setValue(myProfileResponse)
             }
 
             else -> {
