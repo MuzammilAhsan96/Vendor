@@ -39,7 +39,7 @@
         tools:ignore="GoogleAppIndexingWarning,UnusedAttribute"
         tools:replace="allowBackup,supportsRtl,label">
         <activity
-            android:name=".ui.home.AddActivity"
+            android:name=".ui.home.AddFoodActivity"
             android:exported="true" />
         <activity
             android:name=".ui.home.DashboardActivity"

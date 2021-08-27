@@ -29,22 +29,22 @@ import com.karumi.dexter.PermissionToken
 import com.karumi.dexter.listener.PermissionDeniedResponse
 import com.karumi.dexter.listener.PermissionGrantedResponse
 import com.karumi.dexter.listener.single.PermissionListener
-import kotlinx.android.synthetic.main.activity_add.*
-import kotlinx.android.synthetic.main.activity_add.btnLogin
 import kotlinx.android.synthetic.main.activity_dashboard.*
 import kotlinx.android.synthetic.main.activity_login.*
 import android.provider.MediaStore.Images
+import kotlinx.android.synthetic.main.activity_add_food.*
+import kotlinx.android.synthetic.main.activity_login.btnLogin
 import java.io.ByteArrayOutputStream
 
 
-class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
-    val bottomSheetFragment = BottomSheetFragment(this@AddActivity)
+class AddFoodActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
+    val bottomSheetFragment = BottomSheetFragment(this@AddFoodActivity)
     private var selectedMediaFiles: MutableList<Media>? = ArrayList()
     private val viewModel: AuthViewModel by viewModels()
     var count = 3
 
     override fun layoutRes(): Int {
-        return R.layout.activity_add
+        return R.layout.activity_add_food
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -120,7 +120,7 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
             .withListener(object : PermissionListener {
 
                 override fun onPermissionGranted(response: PermissionGrantedResponse?) {
-                    Toast.makeText(this@AddActivity, "Permission Granted", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this@AddFoodActivity, "Permission Granted", Toast.LENGTH_LONG).show()
 
 
                     bottomSheetFragment.show(supportFragmentManager, "bottomsheetdialog")
@@ -128,7 +128,7 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
 
                 override fun onPermissionDenied(response: PermissionDeniedResponse?) {
                     Toast.makeText(
-                        this@AddActivity,
+                        this@AddFoodActivity,
                         R.string.storage_permission_denied_message,
                         Toast.LENGTH_LONG
                     ).show()
@@ -139,7 +139,7 @@ class AddActivity : BaseActivity(), BottomSheetFragment.cameraGallery {
                     permission: com.karumi.dexter.listener.PermissionRequest?,
                     token: PermissionToken?
                 ) {
-                    AlertDialog.Builder(this@AddActivity)
+                    AlertDialog.Builder(this@AddFoodActivity)
                         .setTitle(R.string.storage_permission_rationale_title)
                         .setMessage(R.string.storage_permission_rationale_message)
                         .setNegativeButton(

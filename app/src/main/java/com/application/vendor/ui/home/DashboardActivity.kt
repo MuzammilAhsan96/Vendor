@@ -46,7 +46,7 @@ class DashboardActivity : BaseActivity(), RootCallback<Any>, SwipeRefreshLayout.
         }
 
         btnAdd.setOnClickListener {
-            launchActivity(AddActivity::class.java)
+            launchActivity(AddFoodActivity::class.java)
         }
     }
 
